@@ -1,13 +1,14 @@
 Package: oakdown
-Title: What the Package Does (One Line, Title Case)
+Title: Templates using R, LaTeX, and Pandoc
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Omkar A.",
+           family = "Katta",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "omkarakatta@gmail.com")
+Description: Building off of the {bookdown} package, {oakdown} makes it easier
+    to switch between multiple formats from single-document notes to
+    multi-document reports.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
 Encoding: UTF-8
