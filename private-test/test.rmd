@@ -12,6 +12,7 @@ toc: FALSE
 title <- "my Note"
 subtitle <- "my subtitle"
 other <- "other"
+devtools::load_all()
 print_title(title, subtitle, other)
 ```
 
