@@ -6,6 +6,15 @@ devtools::load_all()
 print_title(title, subtitle, other)
 ```
 
+```{r}
+sessionInfo()
+```
+
+```{r prelim}
+library(knitr)
+library(kableExtra)
+```
+
 
 # Hi
 
@@ -15,10 +24,10 @@ This is some text. The following is the Pythagorean theorem:
   .
 \end{align*}
 
-This is some text.
+This is some text. For $x \in \reals,$
 \uss
 \begin{align*}
-  2x^{2} + 3
+  2x^{2} + 3 \cdot \Ind{x > 2}
 \end{align*}
 
 ## Hello
@@ -34,6 +43,11 @@ its width is 50% of the width of its parent element.
 
 ## This is a subsection
 
+```{r}
+kbl(head(mtcars), format = "latex", booktabs = TRUE, linesep = "") %>%
+  kable_styling(latex_options = c("striped"))
+```
+
 ### subsubsection
 
 This is a test.
@@ -47,3 +61,9 @@ if (TRUE) {
   rnorm(5)
 }
 ```
+
+\begin{align*}
+  \Exp{X} &= \Exp{\CExp{X}{Y}} \\
+  \Exp{X} &= \ExpB{\CExp{X}{Y}}
+  .
+\end{align*}
