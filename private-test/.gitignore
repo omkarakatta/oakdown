@@ -1,0 +1,7 @@
+_book/
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.rds
