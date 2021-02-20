@@ -9,13 +9,17 @@ print_title(title, subtitle, other)
 
 # Hi
 
-This is some text
-
+This is some text. The following is the Pythagorean theorem:
 \begin{align*}
-  2x^{2} + 3
+  a^{2}+b^{2}=c^{2}
+  .
 \end{align*}
 
 This is some text.
+\uss
+\begin{align*}
+  2x^{2} + 3
+\end{align*}
 
 ## Hello
 
