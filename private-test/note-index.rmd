@@ -1,0 +1,10 @@
+---
+fontsize: 11pt
+bibliography: main.bib
+biblio-style: econometrica.bst
+link-citations: TRUE
+editor_options:
+  chunk_output_type: console
+toc: FALSE
+---
+

@@ -1,6 +1,7 @@
 book_filename: testing
 output_dir: _render
 rmd_files:
+  - "note-index.rmd"
   - "test.rmd"
 before_chapter_script: settings.r
 new_session: yes
