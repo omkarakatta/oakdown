@@ -1,0 +1,8 @@
+book_filename: testing
+output_dir: _render
+rmd_files:
+  - "test.rmd"
+before_chapter_script: init.r
+new_session: yes
+delete_merged_file: TRUE
+clean: FALSE

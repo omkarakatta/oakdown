@@ -1,0 +1,54 @@
+---
+fontsize: 11pt
+bibliography: main.bib
+biblio-style: econometrica.bst
+link-citations: TRUE
+editor_options:
+  chunk_output_type: console
+toc: FALSE
+---
+
+```{r title, results = "asis", echo = FALSE, mysize = NULL}
+title <- "my Note"
+subtitle <- "my subtitle"
+other <- "other"
+print_title(title, subtitle, other)
+```
+
+
+# Hi
+
+This is some text
+
+\begin{align*}
+  2x^{2} + 3
+\end{align*}
+
+This is some text.
+
+## Hello
+
+:::: {.center data-latex=""}
+
+::: {.minipage data-latex="{.5\linewidth}"}
+This paragraph will be centered on the page, and
+its width is 50% of the width of its parent element.
+:::
+
+::::
+
+## This is a subsection
+
+### subsubsection
+
+This is a test.
+
+[@R-knitr]
+
+```{r}
+getOption("tinytex.clean")
+print("hello, world!")
+if (TRUE) {
+  rnorm(5)
+}
+```
