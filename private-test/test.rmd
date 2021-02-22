@@ -22,13 +22,13 @@ library(kableExtra)
 
 # Hi
 
-This is some text. The following is the Pythagorean theorem:
+This is some text. The following is the Pythagorean theorem (see Theorem \@ref(thm:test-theorem)):
 \begin{align*}
   a^{2}+b^{2}=c^{2}
   .
 \end{align*}
 
-This is some text. For $x \in \reals,$
+[This is some text.](https://omkarakatta.github.io/) For $x \in \reals,$
 \uss
 \begin{align*}
   2x^{2} + 3 \cdot \Ind{x > 2}
@@ -82,4 +82,7 @@ This is Theorem \@ref(thm:test-theorem)
 - bullet A
 - bullet B
 - bullet C
+:::
+:::{.pr data-latex=""}
+This is the proof.
 :::
