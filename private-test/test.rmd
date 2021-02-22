@@ -1,3 +1,7 @@
+---
+toc: TRUE
+---
+
 ```{r title, results = "asis", echo = FALSE, mysize = NULL}
 title <- "my Note"
 subtitle <- "my subtitle"
