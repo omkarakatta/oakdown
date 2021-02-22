@@ -74,4 +74,8 @@ This is the Pythagorean Theorem:
   a^{2} + b^{2} = c^{2}.
 \end{align*}
 This is Theorem \@ref(thm:test-theorem)
+
+- bullet A
+- bullet B
+- bullet C
 :::
