@@ -7,5 +7,7 @@ colorlinks: TRUE
 editor_options:
   chunk_output_type: console
 toc: FALSE
+toc-title: Contents
+toc-title-spacing: -1em
 ---
 
