@@ -34,8 +34,8 @@
 #'
 #' @export
 print_title <- function(title,
-                        subtitle,
-                        other,
+                        subtitle = "FALSE",
+                        other = "FALSE",
                         date = format(Sys.Date(), "%B %d, %Y"),
                         author = "Omkar A. Katta",
                         id) {
