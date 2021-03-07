@@ -3,9 +3,9 @@ toc: TRUE
 ---
 
 ```{r title, results = "asis", echo = FALSE, mysize = NULL}
-title <- "my Note"
-subtitle <- "my subtitle"
-other <- "other"
+title <- "This is a really really long title that is really long"
+subtitle <- "this is subtitle"
+other <- "other info"
 devtools::load_all()
 print_title(title, subtitle, other)
 ```
