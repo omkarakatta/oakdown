@@ -21,7 +21,7 @@ pdf_output <- function(template = "note",
                        keep_md = TRUE,
                        dev = "cairo_pdf",
                        citation_package = "natbib",
-                       pandoc_args = "--listings",
+                       pandoc_args = c("--listings", "--shift-heading-level-by=-1"),
                        md_extensions = "-auto_identifiers",
                        ...) {
   bookdown::pdf_book(
