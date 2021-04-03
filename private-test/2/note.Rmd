@@ -18,6 +18,8 @@ output:
     citation_package: natbib
     pandoc_args: --listings
     md_extensions: -auto_identifiers
+header-includes:
+  - \usepackage{oaktex}
 ---
 
 ```{r title, results = "asis", echo = FALSE, mysize = NULL}
@@ -32,3 +34,5 @@ oakdown::print_title(title, subtitle, other)
 ```{r}
 sample(seq_len(100), 1)
 ```
+
+$\reals$
