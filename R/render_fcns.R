@@ -17,7 +17,11 @@
 #~    if there is no such file, then look for package defaults
 render_note <- function(input = ".",
                         config_file = "note-bookdown.yml",
+                        clean = FALSE,
                         ...) {
+
+  options(tinytex.clean = clean) # save intermediate files
+
   bookdown::render_book(
     input = input,
     config_file = config_file,

@@ -4,10 +4,6 @@ knitr::opts_chunk$set(cache = FALSE,
                       collapse = TRUE,
                       tidy = 'styler')
 
-### {tinytex} Options ---------------------------
-
-options(tinytex.clean = FALSE) # save intermediate files
-
 ### Chunk Font Size ---------------------------
 
 knitr::knit_hooks$set(mysize = function(before, options, envir) {
