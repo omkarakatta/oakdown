@@ -9,15 +9,7 @@ toc-title: Contents
 toc-title-spacing: -1em
 biblio-style: econometrica.bst
 bibliography: main.bib
-output:
-  bookdown::pdf_book:
-    template: note.tex
-    keep_tex: TRUE
-    keep_md: TRUE
-    dev: cairo_pdf
-    citation_package: natbib
-    pandoc_args: --listings
-    md_extensions: -auto_identifiers
+output: oakdown::pdf_output
 header-includes:
   - \usepackage{oaktex}
 ---
