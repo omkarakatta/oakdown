@@ -5,18 +5,18 @@
 \title{Convert RMD to PDF Output with {oakdown} templates}
 \usage{
 pdf_output(
-  template = "note",
+  format = "note",
   keep_tex = TRUE,
   keep_md = TRUE,
   dev = "cairo_pdf",
   citation_package = "natbib",
-  pandoc_args = "--listings",
+  pandoc_args = c("--listings"),
   md_extensions = "-auto_identifiers",
   ...
 )
 }
 \arguments{
-\item{template}{Name of {oakdown} template}
+\item{format}{Name of {oakdown} template}
 
 \item{keep_tex, keep_md, dev, citation_package, pandoc_args, md_extensions, ...}{Arguments to be passed onto bookdown::pdf_book}
 }

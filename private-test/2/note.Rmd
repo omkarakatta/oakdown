@@ -9,7 +9,7 @@ toc-title: Contents
 toc-title-spacing: -1em
 biblio-style: econometrica.bst
 bibliography: main.bib
-output: oakdown::pdf_output
+output: oakdown::pdf_note
 header-includes:
   - \usepackage{oaktex}
 ---
