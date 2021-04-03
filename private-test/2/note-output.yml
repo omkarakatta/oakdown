@@ -1,8 +1,0 @@
-bookdown::pdf_book:
-  template: note.tex
-  keep_tex: TRUE
-  keep_md: TRUE
-  dev: cairo_pdf
-  citation_package: natbib
-  pandoc_args: --listings
-  md_extensions: -auto_identifiers

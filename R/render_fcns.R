@@ -17,12 +17,10 @@
 #~    if there is no such file, then look for package defaults
 render_note <- function(input = ".",
                         config_file = "note-bookdown.yml",
-                        output_yaml = "note-output.yml",
                         ...) {
   bookdown::render_book(
     input = input,
     config_file = config_file,
-    output_yaml = output_yaml,
     ...
   )
 }
