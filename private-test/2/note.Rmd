@@ -4,7 +4,7 @@ link-citations: TRUE
 colorlinks: TRUE
 editor_options:
   chunk_output_type: console
-toc: FALSE
+toc: TRUE
 toc-title: Contents
 toc-title-spacing: -1em
 biblio-style: econometrica.bst
@@ -28,3 +28,8 @@ sample(seq_len(100), 1)
 ```
 
 $\reals$
+
+```{r}
+sessionInfo()
+getOption("tinytex.clean")
+```
