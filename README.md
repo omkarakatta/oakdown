@@ -27,7 +27,11 @@ This is a basic example which shows you how to solve a common problem:
 ## NOTES
 
 -   See [dotfiles](https://github.com/omkarakatta/dotfiles)
-    -   Store pandoc templates in `~/.pandoc/templates`
+    -   Store pandoc templates in `~/.pandoc/templates`.
+        -   Note that as of commit f86ca8e, I moved the `note.tex`
+            pandoc template into
+            `inst/rmarkdown/templates/note/resources/template.tex` to
+            make the pandoc templates available via {oakdown}
     -   Store/symlink bib files in `~/Library/texmf/bibtex/bib/misc`
     -   Store/symlink bst files in `~/Library/texmf/bibtex/bst/misc`
     -   Store input tex files in `~/Library/texmf/tex/latex/misc`
