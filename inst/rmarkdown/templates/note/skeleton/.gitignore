@@ -1,0 +1,7 @@
+_render/
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.rds
