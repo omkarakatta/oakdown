@@ -55,7 +55,7 @@ render_note <- function(input = "note",
                         ...) {
 
   # save intermediate files
-  options(tinytex.clean = clean)
+  withr::local_options(list(tinytex.clean = clean))
 
   # choose how we print the title
   oakdown_print_title <- title_fcn
