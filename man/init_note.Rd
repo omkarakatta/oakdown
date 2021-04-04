@@ -7,7 +7,7 @@
 init_note(name, use_gitignore = TRUE, overwrite_gitignore = FALSE)
 }
 \arguments{
-\item{name}{Name of Rmd file; defaults to \code{template}}
+\item{name}{Name of Rmd file; defaults to "note"}
 
 \item{use_gitignore}{If TRUE (default), create .gitignore if one does not
 already exist.}
@@ -16,7 +16,12 @@ already exist.}
 exists, overwrite the current .gitignore with the {oakdown} .gitignore}
 }
 \description{
-Initialize note template
+In the current directory, create an Rmd file called \code{name} based
+on the skeleton file in {oakdown}'s note template.
+If \code{use_gitignore} is TRUE and no .gitignore exists in the current
+directory, a .gitignore file will be created.
+If a .gitignore does exist, no .gitignore will be created unless
+\code{overwrite_gitignore} is TRUE.
 }
 \seealso{
 \code{\link{init}}

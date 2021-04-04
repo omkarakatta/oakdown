@@ -8,10 +8,11 @@ render_note(
   input = "note",
   output = paste0("rendered_", input),
   output_dir = "_render",
-  pre_script = "settings.r",
+  pre_script = resources("all", "settings.r"),
   config_file = "note-bookdown.yml",
   save_config_file = FALSE,
-  clean = FALSE,
+  clean = TRUE,
+  clean_bookdown = "",
   title_fcn = cat_header_to_yaml,
   ...
 )
@@ -32,7 +33,10 @@ create it}
 \item{save_config_file}{Save generated book configuration file}
 
 \item{clean}{Argument to be passed to \code{tinytex.clean} option;
-if FALSE (default), keep intermediary files}
+if TRUE (default), delete intermediaries, e.g., *.aux, *.toc, etc.}
+
+\item{clean_bookdown}{Argument to be passed to bookdown configuration;
+vector of files to be removed}
 
 \item{title_fcn}{Function to interpret header information in Rmd}
 
@@ -45,4 +49,7 @@ A PDF note with the name and directory as specified by
 \description{
 This function sets options, generates a bookdown configuration file,
 and wraps \code{bookdown::pdf_book}.
+Note that in the bookdown configuration process, this function, by default,
+specifies the R script to run before the "chapter", which in our case is
+is the note.
 }

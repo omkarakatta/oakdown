@@ -48,7 +48,14 @@ init <- function(template = "note",
 ### init_note -------------------------
 #' Initialize note template
 #'
-#' @param name Name of Rmd file; defaults to \code{template}
+#' In the current directory, create an Rmd file called \code{name} based
+#' on the skeleton file in {oakdown}'s note template.
+#' If \code{use_gitignore} is TRUE and no .gitignore exists in the current
+#' directory, a .gitignore file will be created.
+#' If a .gitignore does exist, no .gitignore will be created unless
+#' \code{overwrite_gitignore} is TRUE.
+#'
+#' @param name Name of Rmd file; defaults to "note"
 #' @param use_gitignore If TRUE (default), create .gitignore if one does not
 #'  already exist.
 #' @param overwrite_gitignore If \code{use_gitignore} is TRUE and .gitignore
