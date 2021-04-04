@@ -25,7 +25,7 @@ oakdown_print_title(title, subtitle, id, other)
 ## Section 1
 
 ```{r}
-sample(seq_len(100), 1)
+Sys.time()
 ```
 
 $\reals$
