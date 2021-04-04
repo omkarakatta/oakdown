@@ -25,7 +25,7 @@ pdf_output <- function(format = "note",
                        md_extensions = "-auto_identifiers",
                        ...) {
   bookdown::pdf_book(
-    template = template_resources(format),
+    template = resources(format),
     keep_tex = keep_tex,
     keep_md = keep_md,
     dev = dev,
