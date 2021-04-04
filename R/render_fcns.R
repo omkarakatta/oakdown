@@ -62,7 +62,7 @@ render_note <- function(input = "note",
       output_dir = output_dir,
       pre_script = pre_script
     )
-    bookdown_template <- readLines(template_resources("note", "note-bookdown.yml"))
+    bookdown_template <- readLines(template_resources("note", "_bookdown.yml"))
     bookdown_config <- whisker::whisker.render(bookdown_template, data = config)
     config <- strsplit(bookdown_config, "\n")[[1]]
     writeLines(config, con = config_file)
