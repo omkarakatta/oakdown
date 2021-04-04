@@ -35,8 +35,8 @@ init <- function(template = "note",
       message(".gitignore exists in current directory")
     } else {
       fs::file_copy(
-        fs::path_package(package = "oakdown", "resources", ".gitignore"),
-        ".",
+        fs::path_package(package = "oakdown", "resources", "gitignore"),
+        "./.gitignore",
         overwrite = overwrite_gitignore
       )
       message("Creating .gitignore")
