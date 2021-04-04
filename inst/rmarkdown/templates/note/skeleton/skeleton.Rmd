@@ -18,11 +18,19 @@ header-includes:
 title <- "TITLE"
 subtitle <- "SUBTITLE"
 other <- "OTHER"
-oakdown::print_title(title, subtitle, other)
+id <- "ID"
+oakdown_print_title(title, subtitle, id, other)
 ```
 
 ## Section 1
 
 ```{r}
 sample(seq_len(100), 1)
+```
+
+$\reals$
+
+```{r}
+sessionInfo()
+getOption("tinytex.clean")
 ```
