@@ -5,18 +5,31 @@
 \title{Render Rmd to a PDF note}
 \usage{
 render_note(
-  input = ".",
+  input = "note",
+  output = paste0("rendered_", input),
+  output_dir = "_render",
+  pre_script = "settings.r",
   config_file = "note-bookdown.yml",
+  save_config_file = FALSE,
   clean = FALSE,
   title_fcn = cat_header_to_yaml,
   ...
 )
 }
 \arguments{
-\item{input}{Input filename or directory, to be passed to
+\item{input}{Input Rmd, to be passed to
 \code{bookdown::render_book()}}
 
-\item{config_file}{Book configuration file}
+\item{output}{Name of the output PDF; defaults to "rendered_\code{input}"}
+
+\item{output_dir}{Name of output directory}
+
+\item{pre_script}{Name of R script to run before rendering}
+
+\item{config_file}{Book configuration file; if file does not exist, then
+create it}
+
+\item{save_config_file}{Save generated book configuration file}
 
 \item{clean}{Argument to be passed to \code{tinytex.clean} option;
 if FALSE (default), keep intermediary files}
@@ -30,5 +43,6 @@ A PDF note with the name and directory as specified by
 \code{config_file}
 }
 \description{
-Render Rmd to a PDF note
+This function sets options, generates a bookdown configuration file,
+and wraps \code{bookdown::pdf_book}.
 }
