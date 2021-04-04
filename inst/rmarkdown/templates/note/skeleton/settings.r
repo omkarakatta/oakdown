@@ -1,8 +1,11 @@
 ### {knitr} Options ---------------------------
 
-knitr::opts_chunk$set(cache = FALSE,
-                      collapse = TRUE,
-                      tidy = 'styler')
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  cache = FALSE,
+  tidy = 'styler'
+)
 
 ### Chunk Font Size ---------------------------
 
