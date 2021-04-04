@@ -21,7 +21,8 @@ render_note <- function(input = ".",
                         title_fcn = cat_header_to_yaml,
                         ...) {
 
-  options(tinytex.clean = clean) # save intermediate files
+  # save intermediate files
+  options(tinytex.clean = clean)
 
   # choose how we print the title
   oakdown_print_title <- title_fcn
