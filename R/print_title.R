@@ -39,9 +39,9 @@
 cat_header_to_yaml <- function(title,
                                subtitle = "FALSE",
                                other = "FALSE",
+                               id,
                                date = format(Sys.Date(), "%B %d, %Y"),
-                               author = "Omkar A. Katta",
-                               id) {
+                               author = "Omkar A. Katta") {
   cat("---")
   cat("\n")
   cat(paste("title:", title))
