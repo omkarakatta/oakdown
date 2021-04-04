@@ -12,14 +12,17 @@
 ###   Currently, only the single-document note is supported
 ###
 
-### print_title ---------------------------
+### cat_header_to_yaml ---------------------------
 
-#' Print header of document
+#' Concatenate and print header info as YAML parameter
 #'
-#' Print the header conditional on the format
+#' Single-document formats use this function to record the header as YAML
+#' paramaters.
 #'
-#' Different formats require different ways to print the header of the document.
-#' Right now, only the single-document note format is supported.
+#' Multi-document formats require the title of the Rmd file as a heading,
+#' not as a title. But single-document formats require the title of the Rmd
+#' to be the title of the document. Hence, this function will \code{cat} the
+#' header information as YAML parameters.
 #'
 #' @param title Title of document
 #' @param subtitle Subtitle of document
@@ -29,16 +32,16 @@
 #' @param id Unique label/identifier of the document; useful for multi-document
 #'  formats
 #'
-#' @return Either a yaml header with the pertinent information to be used
-#'  by pandoc template or a series of TeX commands
+#' @return YAML header with the pertinent information to be used
+#'  by pandoc template
 #'
 #' @export
-print_title <- function(title,
-                        subtitle = "FALSE",
-                        other = "FALSE",
-                        date = format(Sys.Date(), "%B %d, %Y"),
-                        author = "Omkar A. Katta",
-                        id) {
+cat_header_to_yaml <- function(title,
+                               subtitle = "FALSE",
+                               other = "FALSE",
+                               date = format(Sys.Date(), "%B %d, %Y"),
+                               author = "Omkar A. Katta",
+                               id) {
   cat("---")
   cat("\n")
   cat(paste("title:", title))

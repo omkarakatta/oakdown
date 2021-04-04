@@ -18,9 +18,13 @@
 render_note <- function(input = ".",
                         config_file = "note-bookdown.yml",
                         clean = FALSE,
+                        title_fcn = cat_header_to_yaml,
                         ...) {
 
   options(tinytex.clean = clean) # save intermediate files
+
+  # choose how we print the title
+  oakdown_print_title <- title_fcn
 
   bookdown::render_book(
     input = input,
