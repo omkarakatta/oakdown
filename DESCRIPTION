@@ -19,4 +19,5 @@ Imports:
     rmarkdown,
     bookdown,
     fs,
-    whisker
+    whisker,
+    withr
