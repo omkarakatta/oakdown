@@ -4,7 +4,7 @@ link-citations: TRUE
 colorlinks: TRUE
 editor_options:
   chunk_output_type: console
-toc: TRUE
+toc: FALSE
 toc-title: Contents
 toc-title-spacing: -1em
 biblio-style: econometrica.bst
@@ -18,7 +18,8 @@ header-includes:
 title <- "TITLE"
 subtitle <- "SUBTITLE"
 other <- "OTHER"
-oakdown::print_title(title, subtitle, other)
+id <- "ID"
+oakdown_print_title(title, subtitle, id, other)
 ```
 
 ## Section 1

@@ -1,12 +1,11 @@
 ### {knitr} Options ---------------------------
 
-knitr::opts_chunk$set(cache = FALSE,
-                      collapse = TRUE,
-                      tidy = 'styler')
-
-### {tinytex} Options ---------------------------
-
-options(tinytex.clean = FALSE) # save intermediate files
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  cache = FALSE,
+  tidy = 'styler'
+)
 
 ### Chunk Font Size ---------------------------
 
