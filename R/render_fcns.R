@@ -13,12 +13,16 @@
 
 ### render_note ---------------------------
 
-#~ TODO: Check for the existence of a local _bookdown.yml or _output.yml file;
-#~    if there is no such file, then look for package defaults
+# TODO: post_script
+# TODO: Extract bookdown generation into a separate function
+
 #' Render Rmd to a PDF note
 #'
 #' This function sets options, generates a bookdown configuration file,
 #' and wraps \code{bookdown::pdf_book}.
+#' Note that in the bookdown configuration process, this function, by default,
+#' specifies the R script to run before the "chapter", which in our case is
+#' is the note.
 #'
 #' @param input Input Rmd, to be passed to
 #'  \code{bookdown::render_book()}
@@ -40,7 +44,7 @@
 render_note <- function(input = "note",
                         output = paste0("rendered_", input),
                         output_dir = "_render",
-                        pre_script = "settings.r",
+                        pre_script = resources("all", "settings.r"),
                         config_file = "note-bookdown.yml",
                         save_config_file = FALSE,
                         clean = FALSE,
