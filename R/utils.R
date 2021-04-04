@@ -9,5 +9,10 @@
 
 ### template_resources -------------------------
 template_resources <- function(template, file = "pandoc.tex") {
-  fs::path_package(package = "oakdown", "rmarkdown", "templates", template, "resources", file)
+  fs::path_package(package = "oakdown",
+                   "rmarkdown",
+                   "templates",
+                   template,
+                   "resources",
+                   file)
 }
