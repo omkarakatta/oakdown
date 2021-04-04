@@ -17,9 +17,17 @@
 #~    if there is no such file, then look for package defaults
 #' Render Rmd to a PDF note
 #'
-#' @param input Input filename or directory, to be passed to
+#' This function sets options, generates a bookdown configuration file,
+#' and wraps \code{bookdown::pdf_book}.
+#'
+#' @param input Input Rmd, to be passed to
 #'  \code{bookdown::render_book()}
-#' @param config_file Book configuration file
+#' @param output Name of the output PDF; defaults to "rendered_\code{input}"
+#' @param output_dir Name of output directory
+#' @param pre_script Name of R script to run before rendering
+#' @param config_file Book configuration file; if file does not exist, then
+#'  create it
+#' @param save_config_file Save generated book configuration file
 #' @param clean Argument to be passed to \code{tinytex.clean} option;
 #'  if FALSE (default), keep intermediary files
 #' @param title_fcn Function to interpret header information in Rmd
@@ -29,8 +37,12 @@
 #'  \code{config_file}
 #'
 #' @export
-render_note <- function(input = ".",
+render_note <- function(input = "note",
+                        output = paste0("rendered_", input),
+                        output_dir = "_render",
+                        pre_script = "settings.r",
                         config_file = "note-bookdown.yml",
+                        save_config_file = FALSE,
                         clean = FALSE,
                         title_fcn = cat_header_to_yaml,
                         ...) {
@@ -41,9 +53,32 @@ render_note <- function(input = ".",
   # choose how we print the title
   oakdown_print_title <- title_fcn
 
+  # generate bookdown configuration
+  config_file_exists <- fs::file_exists(config_file)
+  if (!config_file_exists) {
+    config <- list(
+      input = input,
+      output = output,
+      output_dir = output_dir,
+      pre_script = pre_script
+    )
+    bookdown_template <- readLines(template_resources("note", "note-bookdown.yml"))
+    bookdown_config <- whisker::whisker.render(bookdown_template, data = config)
+    config <- strsplit(bookdown_config, "\n")[[1]]
+    writeLines(config, con = config_file)
+    message("Generaged bookdown configuration")
+  }
+
+  # render PDF
   bookdown::render_book(
     input = input,
     config_file = config_file,
     ...
   )
+
+  # delete generated bookdown config file
+  if (!config_file_exists & !save_config_file) {
+    fs::file_delete(config_file)
+    message("Deleted bookdown configuration")
+  }
 }

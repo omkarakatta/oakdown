@@ -1,8 +1,0 @@
-book_filename: rendered_note
-output_dir: _render
-rmd_files:
-  - "note.rmd"
-before_chapter_script: settings.r
-new_session: yes
-delete_merged_file: TRUE
-clean: FALSE
