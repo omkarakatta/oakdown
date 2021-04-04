@@ -5,4 +5,4 @@ rmd_files:
 before_chapter_script: {{pre_script}}
 new_session: yes
 delete_merged_file: TRUE
-clean: FALSE
+clean: {{clean_bookdown}}

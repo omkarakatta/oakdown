@@ -33,7 +33,9 @@
 #'  create it
 #' @param save_config_file Save generated book configuration file
 #' @param clean Argument to be passed to \code{tinytex.clean} option;
-#'  if FALSE (default), keep intermediary files
+#'  if TRUE (default), delete intermediaries, e.g., *.aux, *.toc, etc.
+#' @param clean_bookdown Argument to be passed to bookdown configuration;
+#'  vector of files to be removed
 #' @param title_fcn Function to interpret header information in Rmd
 #' @param ... Arguments to be passed to \code{bookdown::render_book}
 #'
@@ -47,7 +49,8 @@ render_note <- function(input = "note",
                         pre_script = resources("all", "settings.r"),
                         config_file = "note-bookdown.yml",
                         save_config_file = FALSE,
-                        clean = FALSE,
+                        clean = TRUE,
+                        clean_bookdown = "",
                         title_fcn = cat_header_to_yaml,
                         ...) {
 
@@ -64,7 +67,8 @@ render_note <- function(input = "note",
       input = input,
       output = output,
       output_dir = output_dir,
-      pre_script = pre_script
+      pre_script = pre_script,
+      clean_bookdown = clean_bookdown
     )
     bookdown_template <- readLines(resources("note", "_bookdown.yml"))
     bookdown_config <- whisker::whisker.render(bookdown_template, data = config)
