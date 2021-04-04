@@ -19,10 +19,38 @@ You can install oakdown from
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+### Note
+
+The `note` format puts the spotlight on a single Rmd file, making this
+ideal for note-taking. To begin, navigate to the directory where you
+want to store the note. Then, initialize the note as follows:
 
     library(oakdown)
-    ## basic example code
+    init_note("<name>")
+
+This produces is an Rmd file called `<name>.Rmd` as well as a .gitignore
+if one does not already exist in that directory. Pay careful attention
+to the default YAML frontmatter provided in `<name>.Rmd`. For **my**
+convenience, I have included `main.bib`, `econometrica.bst`, and
+`oaktex.sty` as part of the frontmatter. These are stored on my local
+computer and have little to do with {oakdown}. Hence, change or remove
+these YAML parameters if you don’t have these files yourself.
+
+After editing the contents of `<name>.Rmd`, you can render the Rmd file
+by calling:
+
+    render_note("<name>", config_file = "<config.yml>")
+
+In the background, this function generates a bookdown configuration file
+called `<config.yml>` if this file does not already exist in the
+directory. The bookdown configuration file will be removed after the
+rendering is complete, unless you want to save the file by specifying
+`save_config_file = TRUE` as an argument to `render_note()`.
+
+During the rendering process, this function decides how to print the
+title of the note. In the `note` format, the title will be passed to the
+YAML frontmatter. In other formats, the title may be passed as a section
+header while the title in the YAML frontmatter is specified elsewhere.
 
 ## NOTES
 
