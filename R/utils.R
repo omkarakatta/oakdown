@@ -8,6 +8,15 @@
 ###
 
 ### template_resources -------------------------
+#' Find resources within {oakdown} template
+#'
+#' @param template Name of template
+#' @param file Name of file in "resources" directory of \code{template}
+#'
+#' @return File path of \code{file} located in {oakdown}'s
+#'  \code{template} directory
+#'
+#' @export
 template_resources <- function(template, file = "pandoc.tex") {
   fs::path_package(package = "oakdown",
                    "rmarkdown",
