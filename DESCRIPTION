@@ -16,4 +16,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports:
     knitr,
-    bookdown
+    rmarkdown,
+    bookdown,
+    fs,
+    whisker
