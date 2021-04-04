@@ -4,12 +4,14 @@
 \alias{template_resources}
 \title{Find resources within {oakdown} template}
 \usage{
-template_resources(template, file = "pandoc.tex")
+template_resources(template, file = "pandoc.tex", subdir = "resources")
 }
 \arguments{
 \item{template}{Name of template}
 
-\item{file}{Name of file in "resources" directory of \code{template}}
+\item{file}{Name of file in \code{subdir} directory of \code{template}}
+
+\item{subdir}{Name of subdirectory in \code{template}}
 }
 \value{
 File path of \code{file} located in {oakdown}'s
