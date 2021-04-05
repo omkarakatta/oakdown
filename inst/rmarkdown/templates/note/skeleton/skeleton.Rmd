@@ -19,7 +19,7 @@ title <- "TITLE"
 subtitle <- "SUBTITLE"
 other <- "OTHER"
 id <- "ID"
-oakdown_print_title(title, subtitle, id, other)
+oakdown_print_title(title, subtitle, other, id)
 ```
 
 ## Section 1
