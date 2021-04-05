@@ -74,7 +74,7 @@ render_note <- function(input = "note",
     bookdown_config <- whisker::whisker.render(bookdown_template, data = config)
     config <- strsplit(bookdown_config, "\n")[[1]]
     writeLines(config, con = config_file)
-    message("Generaged bookdown configuration")
+    message("Generated bookdown configuration")
   }
 
   # render PDF
