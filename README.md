@@ -4,6 +4,8 @@
 # oakdown
 
 <!-- badges: start -->
+
+![status](https://img.shields.io/badge/Status-Under%20Construction-orange)
 <!-- badges: end -->
 
 The goal of {oakdown} is to store and create single-document and
@@ -41,40 +43,14 @@ by calling:
 
     render_note("<name>", config_file = "<config.yml>")
 
-In the background, this function generates a bookdown configuration file
-called `<config.yml>` if this file does not already exist in the
-directory. The bookdown configuration file will be removed after the
-rendering is complete, unless you want to save the file by specifying
-`save_config_file = TRUE` as an argument to `render_note()`.
+The bookdown configuration file, `<config.yml>`, must be in the same
+directory as the note. If `<config.yml>` does not exist in the
+directory, this function will generate a bookdown configuration file in
+the background that will be removed after the rendering is complete. To
+save the generated bookdown configuration file, specify
+`save_config_file = TRUE` as an argument to `render_note().`
 
-During the rendering process, this function decides how to print the
-title of the note. In the `note` format, the title will be passed to the
-YAML frontmatter. In other formats, the title may be passed as a section
-header while the title in the YAML frontmatter is specified elsewhere.
-
-## NOTES
-
--   See [dotfiles](https://github.com/omkarakatta/dotfiles)
-    -   Store pandoc templates in `~/.pandoc/templates`.
-        -   Note that as of commit f86ca8e, I moved the `note.tex`
-            pandoc template into
-            `inst/rmarkdown/templates/note/resources/template.tex` to
-            make the pandoc templates available via {oakdown}
-    -   Store/symlink bib files in `~/Library/texmf/bibtex/bib/misc`
-    -   Store/symlink bst files in `~/Library/texmf/bibtex/bst/misc`
-    -   Store input tex files in `~/Library/texmf/tex/latex/misc`
-    -   See:
-        -   [TeX Directory
-            Structure](http://tug.org/tds/tds.html#Local-additions)
-        -   [SE post about storing .sty and .cls
-            files](https://tex.stackexchange.com/questions/1137/where-do-i-place-my-own-sty-or-cls-files-to-make-them-available-to-all-my-te)
-        -   \[Github Issue comment by
-            @yasirs\](<a href="https://github.com/rstudio/bookdown/issues/362#issuecomment-286327374" class="uri">https://github.com/rstudio/bookdown/issues/362#issuecomment-286327374</a>)
--   I would like the following formats (these are all PDF, but in the
-    future, I’d like to learn how to create HTML and interactive
-    versions):
-    -   note: single-document, go-to format
-    -   report: multi-document, looks very similar to a note
-    -   book: multi-document, operates like a report but looks and feels
-        like a book
-    -   beamer: single-document presentation format
+<!-- During the rendering process, this function decides how to print the title of the note. -->
+<!-- In the `note` format, the title will be passed to the YAML frontmatter. -->
+<!-- In other formats, the title may be passed as a section header while the title in -->
+<!-- the YAML frontmatter is specified elsewhere. -->
