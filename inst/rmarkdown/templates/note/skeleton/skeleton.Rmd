@@ -5,8 +5,8 @@ colorlinks: TRUE
 editor_options:
   chunk_output_type: console
 toc: FALSE
-toc-title: Contents
-toc-title-spacing: -1em
+toc-title: \phantom{Contents}
+toc-title-spacing: -1.5em
 biblio-style: econometrica.bst
 bibliography: main.bib
 output: oakdown::pdf_note
