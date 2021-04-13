@@ -54,8 +54,32 @@ render_note <- function(input = "note",
                         title_fcn = cat_header_to_yaml,
                         ...) {
 
-  # save intermediate files
-  withr::local_options(list(tinytex.clean = clean))
+  check_if_newlines_fence <- function(fence, x, direction) {
+    remove_top <- c()
+    remove_bottom <- c()
+    if (length(fence)) {
+      if (direction %in% c("top", "both")) is_top_blank <- grepl("^\\s*$", x[fence - 1])
+      if (direction %in% c("top", "both")) remove_top <- fence[is_top_blank] - 1
+      if (direction %in% c("bottom", "both")) is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
+      if (direction %in% c("bottom", "both")) remove_bottom <- fence[is_bottom_blank] + 1
+    }
+    x[-c(remove_top, remove_bottom)]
+  }
+  fix_envs <- function(x) {
+    beg_reg <- '^\\s*\\\\begin\\{.*\\}'
+    end_reg <- '^\\s*\\\\end\\{.*\\}'
+
+    top_fence <- grep(beg_reg, x)
+    x <- check_if_newlines_fence(top_fence, x, direction = "both")
+    bottom_fence <- grep(end_reg, x)
+    x <- check_if_newlines_fence(bottom_fence, x, direction = "both")
+    x
+  }
+
+  withr::local_options(
+    list(tinytex.clean = clean, # save intermediate files
+         bookdown.post.latex = function(x) {x <- fix_envs(x)}) # remove empty lines between environments
+  )
 
   # choose how we print the title
   oakdown_print_title <- title_fcn
