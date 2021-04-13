@@ -378,6 +378,9 @@ $if(toc)$
     \setcounter{tocdepth}{$toc-depth-book$}
   $endif$
   \tableofcontents
+  $if(toc-spacing-after)$
+    \vspace{$toc-spacing-after$}
+  $endif$
 $endif$
 
 $if(lot)$
