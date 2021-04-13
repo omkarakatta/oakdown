@@ -33,6 +33,10 @@ $if(linestretch)$
   \usepackage{setspace}
 $endif$
 
+$if(toc-margin)$
+  \usepackage{changepage}
+$endif$
+
 \usepackage{listings}                     % http://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/listings/listings.pdf
 \usepackage[usenames,dvipsnames]{xcolor}
 
@@ -377,7 +381,13 @@ $if(toc)$
   $if(toc-depth-book)$
     \setcounter{tocdepth}{$toc-depth-book$}
   $endif$
+  $if(toc-margin)$
+    \begin{adjustwidth}{$toc-margin$}{$toc-margin$}
+  $endif$
   \tableofcontents
+  $if(toc-margin)$
+    \end{adjustwidth}
+  $endif$
   $if(toc-spacing-after)$
     \vspace{$toc-spacing-after$}
   $endif$
