@@ -226,8 +226,19 @@ $if(highlighting-macros)$
   $highlighting-macros$
 $endif$
 
+%%% ---------------------------
+
+\usepackage{enumitem}
 \providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\itemindent}{10pt}
+}
+\setlist{leftmargin=*}
+
+\renewcommand{\labelitemiii}{$$\circ$$}
+
+%%% ---------------------------
 
 $if(natbib)$
   \usepackage[$natbiboptions$]{natbib}
