@@ -37,6 +37,11 @@ $if(toc-margin)$
   \usepackage{changepage}
 $endif$
 
+$if(toc)$
+  \usepackage{tocloft}
+  \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+$endif$
+
 \usepackage{listings}                     % http://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/listings/listings.pdf
 \usepackage[usenames,dvipsnames]{xcolor}
 
