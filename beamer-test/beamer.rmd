@@ -1,0 +1,60 @@
+---
+title: Beamer Presentation
+author: Omkar A. Katta
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  beamer_presentation:
+      keep_tex: true
+      keep_md: true
+      template: pandoc.tex
+      pandoc_args: --listings
+      # md_extensions:
+toc: false
+toc-title: \phantom{Contents}
+toc-section: true
+toc-allowframebreaks: false
+---
+
+```{r prelim, echo = F}
+source(oakdown::resources("all", "settings.r"))
+knitr::opts_chunk$set(
+  size = "\\scriptsize",
+  comment = "#>"
+)
+```
+
+# In the morning
+
+## Getting up
+
+- Turn off alarm
+- Get out of bed
+  - Don't forget to make your bed
+
+## Getting up Again with "> -"
+
+
+> - Turn off alarm
+> - Get out of bed
+>   - Don't forget to make your bed
+
+## Breakfast
+
+- Eat eggs
+  - Did you remember to brush your teeth?
+- Drink coffee
+  - Tea is another alternative
+  - Don't get addicted to caffeine
+
+# In the evening
+
+## Dinner
+
+- Eat spaghetti
+- Drink wine
+- Code in R
+
+```{r echo = T}
+print("hello world") # hi
+cat(seq(1, 80))
+```
