@@ -14,6 +14,7 @@
 #' @param format Name of {oakdown} template
 #' @param keep_tex,keep_md,dev,citation_package,pandoc_args,md_extensions,...
 #'  Arguments to be passed onto bookdown::pdf_book
+#' @param FUN {rmarkdown} or {bookdown} output function
 #'
 #' @export
 pdf_output <- function(format = "note",
