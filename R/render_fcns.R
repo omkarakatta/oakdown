@@ -15,6 +15,7 @@
 
 # TODO: post_script
 # TODO: Extract bookdown generation into a separate function
+# TODO: Create "ext" argument as in render_beamer?
 
 #' Render Rmd to a PDF note
 #'
