@@ -2,8 +2,6 @@
 title: "Beamer Presentation"
 author: "Omkar A. Katta"
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
-biblio-style: econometrica.bst
-bibliography: main.bib
 toc: false
 toc-title: \phantom{Contents}
 toc-section: true
