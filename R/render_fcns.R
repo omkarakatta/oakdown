@@ -114,3 +114,69 @@ render_note <- function(input = "note",
     message("Deleted bookdown configuration")
   }
 }
+
+### render_beamer ---------------------------
+
+# TODO: Extract bookdown generation into a separate function
+
+#' Render Rmd to a Beamer presentation
+#'
+#' @param input Input Rmd, to be passed to
+#'  \code{bookdown::render_book()}
+#' @param ext Extension of input; defaults to "rmd"
+#' @param output Name of the output PDF; defaults to "rendered_\code{input}"
+#' @param output_dir Name of output directory
+#' @param pre_script Name of R script to run before rendering
+#' @param clean Argument to be passed to \code{tinytex.clean} option;
+#'  if TRUE (default), delete intermediaries, e.g., *.aux, *.toc, etc.
+#' @param ... Arguments to be passed to \code{rmarkdown::render}
+#'
+#' @return A PDF beamer presentation
+#'
+#' @export
+render_beamer <- function(input = "beamer",
+                          ext = "rmd",
+                          output = paste0("rendered_", input),
+                          output_dir = "_render",
+                          pre_script = resources("all", "settings.r"),
+                          clean = TRUE,
+                          ...) {
+
+  check_if_newlines_fence <- function(fence, x, direction) {
+    remove_top <- c()
+    remove_bottom <- c()
+    if (length(fence)) {
+      if (direction %in% c("top", "both")) is_top_blank <- grepl("^\\s*$", x[fence - 1])
+      if (direction %in% c("top", "both")) remove_top <- fence[is_top_blank] - 1
+      if (direction %in% c("bottom", "both")) is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
+      if (direction %in% c("bottom", "both")) remove_bottom <- fence[is_bottom_blank] + 1
+    }
+    x[-c(remove_top, remove_bottom)]
+  }
+  fix_envs <- function(x) {
+    beg_reg <- '^\\s*\\\\begin\\{.*\\}'
+    end_reg <- '^\\s*\\\\end\\{.*\\}'
+
+    top_fence <- grep(beg_reg, x)
+    x <- check_if_newlines_fence(top_fence, x, direction = "both")
+    bottom_fence <- grep(end_reg, x)
+    x <- check_if_newlines_fence(bottom_fence, x, direction = "both")
+    x
+  }
+
+  withr::local_options(
+    list(tinytex.clean = clean, # save intermediate files
+         bookdown.post.latex = function(x) {x <- fix_envs(x)}) # remove empty lines between environments
+  )
+
+  # source pre_script
+  source(pre_script)
+
+  # render PDF
+  rmarkdown::render(
+    input = paste0(input, ".", ext),
+    output_dir = output_dir,
+    output_file = output,
+    ...
+  )
+}
