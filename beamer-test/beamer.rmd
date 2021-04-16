@@ -13,6 +13,8 @@ toc: false
 toc-title: \phantom{Contents}
 toc-section: true
 toc-allowframebreaks: false
+header-includes:
+  - \usepackage{oaktex}
 ---
 
 ```{r prelim, echo = F}
