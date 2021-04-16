@@ -53,27 +53,27 @@ $endif$
 $if(chunk-background-col)$
   \definecolor{backgroundCol}{HTML}{$chunk-background-color$}
 $else$
-  \definecolor{backgroundCol}{HTML}{F0F0F0}
+  \definecolor{backgroundCol}{HTML}{ffffff}
 $endif$
 $if(string-col)$
   \definecolor{stringstyleCol}{HTML}{string-col}
 $else$
-  \definecolor{stringstyleCol}{HTML}{319104} % green
+  \definecolor{stringstyleCol}{HTML}{9b2c32} % red
 $endif$
 $if(comment-col)$
   \definecolor{commentstyleCol}{HTML}{$comment-col$}
 $else$
-  \definecolor{commentstyleCol}{HTML}{7e61cc}
+  \definecolor{commentstyleCol}{HTML}{b3b1b1}
 $endif$
 $if(keyword-col)$
   \definecolor{keywordstyleCol}{HTML}{$keyword-col$}
 $else$
-  \definecolor{keywordstyleCol}{rgb}{0.737,0.353,0.396}
+  \definecolor{keywordstyleCol}{HTML}{000000}
 $endif$
 $if(output-col)$
   \definecolor{outputCol}{HTML}{$output-col$}
 $else$
-  \definecolor{outputCol}{rgb}{0.192,0.494,0.8}
+  \definecolor{outputCol}{HTML}{8e8582}
 $endif$
 \lstdefinelanguage{R}{
   keywords={abbreviate,abline,abs,acos,acosh,action,add1,add,%
@@ -152,7 +152,7 @@ $endif$
   alsoother={._$$},
   sensitive,
   morecomment=[l]\#,
-  morecomment=[l][\color{outputCol}]{\#\#}, % output style
+  morecomment=[l][\color{outputCol}]{\#>}, % output style
   morestring=[d]",
   morestring=[d]',
   morekeywords={TRUE,FALSE}
@@ -170,7 +170,8 @@ $endif$
   commentstyle=\color{commentstyleCol},   % comment style
   stringstyle=\color{stringstyleCol},     % string literal style
   frame=single,
-  frameround=tttt
+  frameround=tttt,
+  rulecolor = \color{baseCol}
 }
 \lstset{
   % language=R,
