@@ -1,18 +1,56 @@
 ---
-title: "Template Title"
-author: "Your Name"
-date: "The Date"
-output: output_format
+title: "Beamer Presentation"
+author: "Omkar A. Katta"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+biblio-style: econometrica.bst
+bibliography: main.bib
+toc: false
+toc-title: \phantom{Contents}
+toc-section: true
+toc-allowframebreaks: false
+output: oakdown::beamer
+header-includes:
+  - \usepackage{oaktex}
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  size = "\\scriptsize"
+)
 ```
 
-## Adding an RMarkdown Template
+# In the morning
 
-This file is what a user will see when they select your template. Make sure that you update the fields in the yaml header. In particular you will want to update the `output` field to whatever format your template requires.
+## Getting up
 
-This is a good place to demonstrate special features that your template provides. Ideally it should knit out-of-the-box, or at least contain clear instructions as to what needs changing.
+- Turn off alarm
+- Get out of bed
+  - Don't forget to make your bed
 
-Finally, be sure to remove this message!
+## Getting up again with "> -"
+
+
+> - Turn off alarm
+> - Get out of bed
+>   - Don't forget to make your bed
+
+## Breakfast
+
+- Eat eggs
+  - Did you remember to brush your teeth?
+- Drink coffee
+  - Tea is another alternative
+  - Don't get addicted to caffeine
+
+# In the evening
+
+## Dinner
+
+- Eat spaghetti
+- Drink wine
+- Code in R
+
+```{r echo = T}
+print("hello world") # hi
+cat(seq(1, 80))
+```

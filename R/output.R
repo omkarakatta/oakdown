@@ -23,8 +23,9 @@ pdf_output <- function(format = "note",
                        citation_package = "natbib",
                        pandoc_args = c("--listings"),
                        md_extensions = "-auto_identifiers",
+                       FUN,
                        ...) {
-  bookdown::pdf_book(
+  FUN(
     template = resources(format),
     keep_tex = keep_tex,
     keep_md = keep_md,
@@ -47,6 +48,28 @@ pdf_note <- function(...) {
     format = "note",
     pandoc_args = c("--listings",
                     "--shift-heading-level-by=-1"),
+    FUN = bookdown::pdf_book,
+    ...
+  )
+}
+
+### beamer -------------------------
+#' Convert Rmd into a beamer presentation
+#'
+#' @param pandoc_args Pandoc arguments to be passed to \code{\link{pdf_output}};
+#'  defaults to "--listings"
+#' @param slide_level Heading level defining individual slides; defaults to 2
+#' @param ... Arguments to be passed to \code{\link{pdf_output}}
+#'
+#' @export
+beamer <- function(pandoc_args = c("--listings"),
+                   slide_level = 2,
+                   ...) {
+  pdf_output(
+    format = "beamer",
+    pandoc_args = pandoc_args,
+    slide_level = slide_level,
+    FUN = rmarkdown::beamer_presentation,
     ...
   )
 }
