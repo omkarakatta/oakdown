@@ -12,6 +12,7 @@ pdf_output(
   citation_package = "natbib",
   pandoc_args = c("--listings"),
   md_extensions = "-auto_identifiers",
+  FUN,
   ...
 )
 }
@@ -19,6 +20,8 @@ pdf_output(
 \item{format}{Name of {oakdown} template}
 
 \item{keep_tex, keep_md, dev, citation_package, pandoc_args, md_extensions, ...}{Arguments to be passed onto bookdown::pdf_book}
+
+\item{FUN}{{rmarkdown} or {bookdown} output function}
 }
 \description{
 Convert RMD to PDF Output with {oakdown} templates
