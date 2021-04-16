@@ -55,7 +55,7 @@ init <- function(template = "note",
 #' If a .gitignore does exist, no .gitignore will be created unless
 #' \code{overwrite_gitignore} is TRUE.
 #'
-#' @param name Name of Rmd file; defaults to "note"
+#' @param name Name of Rmd file
 #' @param use_gitignore If TRUE (default), create .gitignore if one does not
 #'  already exist.
 #' @param overwrite_gitignore If \code{use_gitignore} is TRUE and .gitignore
@@ -81,7 +81,7 @@ init_note <- function(name, use_gitignore = TRUE, overwrite_gitignore = FALSE) {
 #' If a .gitignore does exist, no .gitignore will be created unless
 #' \code{overwrite_gitignore} is TRUE.
 #'
-#' @param name Name of Rmd file; defaults to "beamer"
+#' @param name Name of Rmd file
 #' @param use_gitignore If TRUE (default), create .gitignore if one does not
 #'  already exist.
 #' @param overwrite_gitignore If \code{use_gitignore} is TRUE and .gitignore
