@@ -7,7 +7,7 @@
 init_note(name, use_gitignore = TRUE, overwrite_gitignore = FALSE)
 }
 \arguments{
-\item{name}{Name of Rmd file; defaults to "note"}
+\item{name}{Name of Rmd file}
 
 \item{use_gitignore}{If TRUE (default), create .gitignore if one does not
 already exist.}
