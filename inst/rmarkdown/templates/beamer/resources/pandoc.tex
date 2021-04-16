@@ -362,7 +362,7 @@ $if(natbib)$
     $endif$
     \begin{frame}[allowframebreaks]{$biblio-title$}
     \bibliographytrue
-    \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+    \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$$for(bibliography-other)$$bibliography-other$$sep$,$endfor$}
     \end{frame}
   $endif$
 $endif$
@@ -372,6 +372,5 @@ $if(biblatex)$
   \printbibliography[heading=none]
   \end{frame}
 $endif$
-
 
 \end{document}
