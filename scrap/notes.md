@@ -4,8 +4,13 @@
   - note: single-document, go-to format
   - report: multi-document, looks very similar to a note
   - book: multi-document, operates like a report but looks and feels like a book
-  - beamer: single-document presentation format
+  - beamer: single-document presentation format [WIP]
 - Incorporate {cli}
+
+# Issues
+
+- `natbib` is not working when `bibliography` or `bibliography-other` is specified [beamer]
+- document the code in inst/rmarkdown/templates/beamer/resources/pandoc.tex
 
 # Incorporating {oakdown} with my pandoc and tex
 

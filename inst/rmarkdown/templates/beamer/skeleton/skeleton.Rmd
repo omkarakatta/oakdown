@@ -1,0 +1,54 @@
+---
+title: "Beamer Presentation"
+author: "Omkar A. Katta"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+toc: false
+toc-title: \phantom{Contents}
+toc-section: true
+toc-allowframebreaks: false
+output: oakdown::beamer
+header-includes:
+  - \usepackage{oaktex}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  size = "\\scriptsize"
+)
+```
+
+# In the morning
+
+## Getting up
+
+- Turn off alarm
+- Get out of bed
+  - Don't forget to make your bed
+
+## Getting up again with "> -"
+
+
+> - Turn off alarm
+> - Get out of bed
+>   - Don't forget to make your bed
+
+## Breakfast
+
+- Eat eggs
+  - Did you remember to brush your teeth?
+- Drink coffee
+  - Tea is another alternative
+  - Don't get addicted to caffeine
+
+# In the evening
+
+## Dinner
+
+- Eat spaghetti
+- Drink wine
+- Code in R
+
+```{r echo = T}
+print("hello world") # hi
+cat(seq(1, 80))
+```

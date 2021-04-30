@@ -1,4 +1,5 @@
 ^LICENSE\.md$
 ^README\.Rmd$
 ^private-test$
+^beamer-test$
 ^scrap$
