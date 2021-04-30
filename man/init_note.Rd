@@ -4,10 +4,17 @@
 \alias{init_note}
 \title{Initialize note template}
 \usage{
-init_note(name, use_gitignore = TRUE, overwrite_gitignore = FALSE)
+init_note(
+  name,
+  ext = ".rmd",
+  use_gitignore = TRUE,
+  overwrite_gitignore = FALSE
+)
 }
 \arguments{
-\item{name}{Name of Rmd file}
+\item{name}{Name of file}
+
+\item{ext}{Extension of file; defaults to ".rmd"}
 
 \item{use_gitignore}{If TRUE (default), create .gitignore if one does not
 already exist.}

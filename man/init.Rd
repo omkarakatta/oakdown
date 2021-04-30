@@ -7,6 +7,7 @@
 init(
   template = "note",
   name = template,
+  ext = ".rmd",
   use_gitignore = TRUE,
   overwrite_gitignore = FALSE
 )
@@ -14,7 +15,9 @@ init(
 \arguments{
 \item{template}{Name of {oakdown} template; defaults to "note"}
 
-\item{name}{Name of Rmd file; defaults to \code{template}}
+\item{name}{Name of file; defaults to \code{template}}
+
+\item{ext}{Extension of file; defaults to ".rmd"}
 
 \item{use_gitignore}{If TRUE (default), create .gitignore if one does not
 already exist.}
