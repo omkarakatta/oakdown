@@ -10,6 +10,7 @@
 # Issues
 
 - `natbib` is not working when `bibliography` or `bibliography-other` is specified [beamer]
+- document the code in inst/rmarkdown/templates/beamer/resources/pandoc.tex
 
 # Incorporating {oakdown} with my pandoc and tex
 
