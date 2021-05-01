@@ -25,8 +25,9 @@
 #' specifies the R script to run before the "chapter", which in our case is
 #' is the note.
 #'
-#' @param input Input Rmd, to be passed to
+#' @param input Input file, to be passed to
 #'  \code{bookdown::render_book()}
+#' @param ext Extension of input; defaults to "rmd"
 #' @param output Name of the output PDF; defaults to "rendered_\code{input}"
 #' @param output_dir Name of output directory
 #' @param pre_script Name of R script to run before rendering
@@ -45,6 +46,7 @@
 #'
 #' @export
 render_note <- function(input = "note",
+                        ext = "rmd",
                         output = paste0("rendered_", input),
                         output_dir = "_render",
                         pre_script = resources("all", "settings.r"),
@@ -89,7 +91,7 @@ render_note <- function(input = "note",
   config_file_exists <- fs::file_exists(config_file)
   if (!config_file_exists) {
     config <- list(
-      input = input,
+      input = paste0(input, ".", ext),
       output = output,
       output_dir = output_dir,
       pre_script = pre_script,
@@ -104,7 +106,7 @@ render_note <- function(input = "note",
 
   # render PDF
   bookdown::render_book(
-    input = input,
+    input = paste0(input, ".", ext),
     config_file = config_file,
     ...
   )
