@@ -341,7 +341,7 @@ $endfor$
 \renewcommand{\maketitle}{%
     \noindent\rule{\textwidth}{1.5pt}\\[7pt]
     {\large \@author \hfill \@date} \\[0.75\baselineskip]
-    {\LARGE\centerline{\textbf{\@title}}} \\[0.75\baselineskip]
+    {$if(title-font-size)$$title-font-size$$else$\LARGE$endif$\centerline{\textbf{\@title}}} \\[0.75\baselineskip]
     $if(subtitle)$
       $if(other)$
         {\normalsize $subtitle$ \hfill $other$} \\
