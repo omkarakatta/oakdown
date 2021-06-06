@@ -54,6 +54,22 @@ pdf_note <- function(...) {
   )
 }
 
+### pdf_quicknote -------------------------
+#' Convert Rmd into a quicknote
+#'
+#' @param ... Arguments to be passed to \code{\link{pdf_output}}
+#'
+#' @export
+pdf_quicknote <- function(...) {
+  pdf_output(
+    format = "quicknote",
+    pandoc_args = c("--listings",
+                    "--shift-heading-level-by=-1"),
+    FUN = bookdown::pdf_book,
+    ...
+  )
+}
+
 ### beamer -------------------------
 #' Convert Rmd into a beamer presentation
 #'

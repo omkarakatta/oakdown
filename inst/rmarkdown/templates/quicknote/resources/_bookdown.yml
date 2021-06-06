@@ -1,0 +1,8 @@
+book_filename: {{output}}
+output_dir: {{output_dir}}
+rmd_files:
+  - "{{input}}"
+before_chapter_script: {{pre_script}}
+new_session: yes
+delete_merged_file: TRUE
+clean: {{clean_bookdown}}

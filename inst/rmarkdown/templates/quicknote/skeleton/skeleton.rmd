@@ -1,0 +1,66 @@
+---
+fontsize: 11pt
+link-citations: TRUE
+colorlinks: TRUE
+editor_options:
+  chunk_output_type: console
+toc: TRUE
+toc-title: \phantom{Contents}
+toc-title-spacing: -1.5em
+toc-spacing-after: 1em
+toc-margin: 0.5in
+linestretch: 1.15
+biblio-style: econometrica.bst
+bibliography: main.bib
+output: oakdown::pdf_note
+header-includes:
+  - \usepackage{oaktex}
+---
+
+```{r title, results = "asis", echo = FALSE, mysize = NULL}
+title <- "TITLE"
+subtitle <- "SUBTITLE"
+other <- "OTHER"
+id <- "ID"
+oakdown_print_title(title, subtitle, other, id)
+```
+
+```{r}
+Sys.time()
+```
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+## Theorem and Proof
+
+Theorem \@ref(thm:label) is an example of an environment written with fenced divs.
+
+:::{.thm data-latex="{Title of Theorem}{label}"}
+This is an important theorem.
+:::
+:::{.pr data-latex=""}
+Because I said so.
+:::
+
+## Lists
+
+- This is an unordered list.
+- Level 1 uses bullets.
+  - Level 2 uses dashes.
+    - Level 3 uses open circles.
+  - Next, we'll go over ordered lists.
+
+1. This is an ordered list.
+2. Do the numbers change depending on the levels?
+    1. Level 2 is the same as Level 1.
+        1. Level 3 is also the same.
+        1. Level 3 is also the same.
+    2. Pretty cool, right?

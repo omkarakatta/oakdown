@@ -1,0 +1,4 @@
+name: note
+description: >
+   Single-document, go-to format for note-taking
+create_dir: FALSE

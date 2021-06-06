@@ -80,6 +80,37 @@ init_note <- function(name,
        overwrite_gitignore = overwrite_gitignore)
 }
 
+### init_quicknote -------------------------
+#' Initialize quicknote template
+#'
+#' In the current directory, create an Rmd file called \code{name} based
+#' on the skeleton file in {oakdown}'s note template.
+#' If \code{use_gitignore} is TRUE and no .gitignore exists in the current
+#' directory, a .gitignore file will be created.
+#' If a .gitignore does exist, no .gitignore will be created unless
+#' \code{overwrite_gitignore} is TRUE.
+#'
+#' @param name Name of file
+#' @param ext Extension of file; defaults to ".rmd"
+#' @param use_gitignore If TRUE (default), create .gitignore if one does not
+#'  already exist.
+#' @param overwrite_gitignore If \code{use_gitignore} is TRUE and .gitignore
+#'  exists, overwrite the current .gitignore with the {oakdown} .gitignore
+#'
+#' @export
+#'
+#' @seealso \code{\link{init}}
+init_quicknote <- function(name,
+                           ext = ".rmd",
+                           use_gitignore = TRUE,
+                           overwrite_gitignore = FALSE) {
+  init(template = "quicknote",
+       name = name,
+       ext = ext,
+       use_gitignore = use_gitignore,
+       overwrite_gitignore = overwrite_gitignore)
+}
+
 ### init_beamer -------------------------
 #' Initialize beamer template
 #'
