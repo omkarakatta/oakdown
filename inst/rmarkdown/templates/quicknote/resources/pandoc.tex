@@ -2,6 +2,8 @@
 \documentclass[
   $if(fontsize)$
     $fontsize$,
+  $else$
+    12pt,
   $endif$
   $if(lang)$
     $babel-lang$,
@@ -29,15 +31,11 @@ $else$
   \usepackage{lmodern}
 $endif$
 
-$if(linestretch)$
-  \usepackage{setspace}
-$endif$
+\usepackage{setspace}
+\usepackage{changepage}
 
-$if(toc-margin)$
-  \usepackage{changepage}
-$endif$
-
-$if(toc)$
+$if(toc-hide)$
+$else$
   \usepackage{tocloft}
   \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 $endif$
@@ -249,16 +247,8 @@ $endif$
 
 %%% ---------------------------
 
-$if(natbib)$
-  \usepackage[$natbiboptions$]{natbib}
-  \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
-$if(biblatex)$
-  \usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
-  $for(bibliography)$
-  \addbibresource{$bibliography$}
-  $endfor$
-$endif$
+\usepackage[$natbiboptions$]{natbib} % only use natbib, not bibtex or pandoc-citeproc
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $if(csl-refs)$
   \newlength{\cslhangindent}
   \setlength{\cslhangindent}{1.5em}
@@ -287,7 +277,6 @@ $endif$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 \date{$date$}
 
-
 $for(header-includes)$
   $header-includes$
 $endfor$
@@ -311,15 +300,11 @@ $endfor$
   $if(keywords)$
     pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
   $endif$
-  $if(colorlinks)$
-    colorlinks=true,
-    linkcolor=$if(linkcolor)$$linkcolor$$else$blue$endif$,
-    filecolor=$if(filecolor)$$filecolor$$else$Maroon$endif$,
-    citecolor=$if(citecolor)$$citecolor$$else$black$endif$,
-    urlcolor=$if(urlcolor)$$urlcolor$$else$red$endif$,
-  $else$
-    hidelinks,
-  $endif$
+  colorlinks=true,
+  linkcolor=$if(linkcolor)$$linkcolor$$else$blue$endif$,
+  filecolor=$if(filecolor)$$filecolor$$else$Maroon$endif$,
+  citecolor=$if(citecolor)$$citecolor$$else$black$endif$,
+  urlcolor=$if(urlcolor)$$urlcolor$$else$red$endif$,
   pdfcreator={LaTeX via pandoc}
 }
 
@@ -368,33 +353,48 @@ $else$
   \vspace{2em}
 $endif$
 
-$if(toc)$
-  $if(toc-title)$
-    \renewcommand*\contentsname{
-      $if(toc-title-spacing)$
-        \vspace{$toc-title-spacing$}
-      $endif$
+$if(toc-hide)$
+$else$
+  \renewcommand*\contentsname{
+    $if(toc-title-spacing)$
+      \vspace{$toc-title-spacing$}
+    $else$
+      \vspace{-1.5em}
+    $endif$
+    $if(toc-title)$
       $toc-title$
-      $if(toc-title-spacing)$
-        \vspace{$toc-title-spacing$}
-      $endif$
-    }
-  $endif$
-  $if(colorlinks)$
-    \hypersetup{linktoc=page}
-  $endif$
+    $else$
+      \phantom{Contents}
+    $endif$
+    $if(toc-title-spacing)$
+      \vspace{$toc-title-spacing$}
+    $else$
+      \vspace{-1.5em}
+    $endif$
+  }
+  \hypersetup{linktoc=page}
   $if(toc-depth)$
     \setcounter{tocdepth}{$toc-depth$}
   $endif$
-  $if(toc-margin)$
-    \begin{adjustwidth}{$toc-margin$}{$toc-margin$}
-  $endif$
-  \tableofcontents
-  $if(toc-margin)$
-    \end{adjustwidth}
-  $endif$
+  \begin{adjustwidth}{
+    $if(toc-margin)$
+      $toc-margin$
+    $else$
+      0.5in
+    $endif$
+  }{
+    $if(toc-margin)$
+      $toc-margin$
+    $else$
+      0.5in
+    $endif$
+  }
+    \tableofcontents
+  \end{adjustwidth}
   $if(toc-spacing-after)$
     \vspace{$toc-spacing-after$}
+  $else$
+    \vspace{1em}
   $endif$
 $endif$
 
@@ -405,32 +405,24 @@ $if(lof)$
   \listoffigures
 $endif$
 
-$if(linestretch)$
-  \setstretch{$linestretch$}
-$endif$
+\setstretch{
+  $if(linestretch)$
+    $linestretch$
+  $else$
+    1.15
+  $endif$
+}
 
 $body$
 
-$if(natbib)$
-  $if(bibliography)$
-    $if(biblio-title)$
-      $if(has-chapters)$
-        \renewcommand\bibname{$biblio-title$}
-      $else$
-        \renewcommand\refname{$biblio-title$}
-      $endif$
-    $endif$
-    \newpage
-    \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$$for(bibliography-other)$$bibliography-other$$sep$,$endfor$}
+$if(biblio-title)$
+  $if(has-chapters)$
+    \renewcommand\bibname{$biblio-title$}
+  $else$
+    \renewcommand\refname{$biblio-title$}
   $endif$
 $endif$
-
-$if(biblatex)$
-  \begin{frame}[allowframebreaks]{$biblio-title$}
-    \bibliographytrue
-    \printbibliography[heading=none]
-  \end{frame}
-  \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-$endif$
+\newpage
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$ $for(bibliography-other)$$bibliography-other$$sep$,$endfor$}
 
 \end{document}

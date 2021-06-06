@@ -9,6 +9,7 @@ render_quicknote(
   ext = "rmd",
   output = paste0("rendered_", input),
   output_dir = "_render",
+  output_format = oakdown::pdf_quicknote(),
   pre_script = resources("all", "settings.r"),
   config_file = "quicknote-bookdown.yml",
   save_config_file = FALSE,
@@ -27,6 +28,9 @@ render_quicknote(
 \item{output}{Name of the output PDF; defaults to "rendered_\code{input}"}
 
 \item{output_dir}{Name of output directory}
+
+\item{output_format}{Name of output format; defaults to
+\code{oakdown::pdf_quicknote}}
 
 \item{pre_script}{Name of R script to run before rendering}
 

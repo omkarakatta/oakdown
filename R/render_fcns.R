@@ -137,6 +137,8 @@ render_note <- function(input = "note",
 #' @param ext Extension of input; defaults to "rmd"
 #' @param output Name of the output PDF; defaults to "rendered_\code{input}"
 #' @param output_dir Name of output directory
+#' @param output_format Name of output format; defaults to
+#'  \code{oakdown::pdf_quicknote}
 #' @param pre_script Name of R script to run before rendering
 #' @param config_file Book configuration file; if file does not exist, then
 #'  create it
@@ -156,6 +158,7 @@ render_quicknote <- function(input = "quicknote",
                              ext = "rmd",
                              output = paste0("rendered_", input),
                              output_dir = "_render",
+                             output_format = oakdown::pdf_quicknote(),
                              pre_script = resources("all", "settings.r"),
                              config_file = "quicknote-bookdown.yml",
                              save_config_file = FALSE,
@@ -215,6 +218,7 @@ render_quicknote <- function(input = "quicknote",
   bookdown::render_book(
     input = paste0(input, ".", ext),
     config_file = config_file,
+    output_format = output_format,
     ...
   )
 

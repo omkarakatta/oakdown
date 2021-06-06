@@ -1,0 +1,8 @@
+book_filename: rendered_test
+output_dir: _render
+rmd_files:
+  - "test.rmd"
+before_chapter_script: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/oakdown/resources/settings.r
+new_session: yes
+delete_merged_file: TRUE
+clean: 
