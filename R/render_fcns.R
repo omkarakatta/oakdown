@@ -195,7 +195,7 @@ render_quicknote <- function(input = "quicknote",
   )
 
   # choose how we print the title
-  oakdown_print_title <- title_fcn
+  # oakdown_print_title <- title_fcn # don't need to print title in quicknote
 
   # generate bookdown configuration
   config_file_exists <- fs::file_exists(config_file)

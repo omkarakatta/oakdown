@@ -1,16 +1,14 @@
 ---
+title: TITLE
+subtitle: SUBTITLE
+other: OTHER
+id: ID
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+author: AUTHOR
 bibliography: main.bib
 header-includes:
   - \usepackage{oaktex}
 ---
-
-```{r title, results = "asis", echo = FALSE, mysize = NULL}
-title <- "TITLE"
-subtitle <- "SUBTITLE"
-other <- "OTHER"
-id <- "ID"
-oakdown_print_title(title, subtitle, other, id)
-```
 
 ```{r}
 Sys.time()
