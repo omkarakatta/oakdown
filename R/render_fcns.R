@@ -61,16 +61,24 @@ render_note <- function(input = "note",
     remove_top <- c()
     remove_bottom <- c()
     if (length(fence)) {
-      if (direction %in% c("top", "both")) is_top_blank <- grepl("^\\s*$", x[fence - 1])
-      if (direction %in% c("top", "both")) remove_top <- fence[is_top_blank] - 1
-      if (direction %in% c("bottom", "both")) is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
-      if (direction %in% c("bottom", "both")) remove_bottom <- fence[is_bottom_blank] + 1
+      if (direction %in% c("top", "both")) {
+        is_top_blank <- grepl("^\\s*$", x[fence - 1])
+      }
+      if (direction %in% c("top", "both")) {
+        remove_top <- fence[is_top_blank] - 1
+      }
+      if (direction %in% c("bottom", "both")) {
+        is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
+      }
+      if (direction %in% c("bottom", "both")) {
+        remove_bottom <- fence[is_bottom_blank] + 1
+      }
     }
     x[-c(remove_top, remove_bottom)]
   }
   fix_envs <- function(x) {
-    beg_reg <- '^\\s*\\\\begin\\{.*\\}'
-    end_reg <- '^\\s*\\\\end\\{.*\\}'
+    beg_reg <- "^\\s*\\\\begin\\{.*\\}"
+    end_reg <- "^\\s*\\\\end\\{.*\\}"
 
     top_fence <- grep(beg_reg, x)
     x <- check_if_newlines_fence(top_fence, x, direction = "both")
@@ -80,8 +88,12 @@ render_note <- function(input = "note",
   }
 
   withr::local_options(
-    list(tinytex.clean = clean, # save intermediate files
-         bookdown.post.latex = function(x) {x <- fix_envs(x)}) # remove empty lines between environments
+    list(
+      tinytex.clean = clean, # save intermediate files
+      bookdown.post.latex = function(x) {
+        x <- fix_envs(x)
+      } # remove empty lines between environments
+    )
   )
 
   # choose how we print the title
@@ -155,32 +167,40 @@ render_note <- function(input = "note",
 #'
 #' @export
 render_jot <- function(input = "jot",
-                             ext = "rmd",
-                             output = paste0("rendered_", input),
-                             output_dir = "_render",
-                             output_format = oakdown::pdf_jot(),
-                             pre_script = resources("all", "settings.r"),
-                             config_file = "jot-bookdown.yml",
-                             save_config_file = FALSE,
-                             clean = TRUE,
-                             clean_bookdown = "",
-                             title_fcn = cat_header_to_yaml,
-                             ...) {
+                       ext = "rmd",
+                       output = paste0("rendered_", input),
+                       output_dir = "_render",
+                       output_format = oakdown::pdf_jot(),
+                       pre_script = resources("all", "settings.r"),
+                       config_file = "jot-bookdown.yml",
+                       save_config_file = FALSE,
+                       clean = TRUE,
+                       clean_bookdown = "",
+                       title_fcn = cat_header_to_yaml,
+                       ...) {
 
   check_if_newlines_fence <- function(fence, x, direction) {
     remove_top <- c()
     remove_bottom <- c()
     if (length(fence)) {
-      if (direction %in% c("top", "both")) is_top_blank <- grepl("^\\s*$", x[fence - 1])
-      if (direction %in% c("top", "both")) remove_top <- fence[is_top_blank] - 1
-      if (direction %in% c("bottom", "both")) is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
-      if (direction %in% c("bottom", "both")) remove_bottom <- fence[is_bottom_blank] + 1
+      if (direction %in% c("top", "both")) {
+        is_top_blank <- grepl("^\\s*$", x[fence - 1])
+      }
+      if (direction %in% c("top", "both")) {
+        remove_top <- fence[is_top_blank] - 1
+      }
+      if (direction %in% c("bottom", "both")) {
+        is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
+      }
+      if (direction %in% c("bottom", "both")) {
+        remove_bottom <- fence[is_bottom_blank] + 1
+      }
     }
     x[-c(remove_top, remove_bottom)]
   }
   fix_envs <- function(x) {
-    beg_reg <- '^\\s*\\\\begin\\{.*\\}'
-    end_reg <- '^\\s*\\\\end\\{.*\\}'
+    beg_reg <- "^\\s*\\\\begin\\{.*\\}"
+    end_reg <- "^\\s*\\\\end\\{.*\\}"
 
     top_fence <- grep(beg_reg, x)
     x <- check_if_newlines_fence(top_fence, x, direction = "both")
@@ -190,8 +210,12 @@ render_jot <- function(input = "jot",
   }
 
   withr::local_options(
-    list(tinytex.clean = clean, # save intermediate files
-         bookdown.post.latex = function(x) {x <- fix_envs(x)}) # remove empty lines between environments
+    list(
+      tinytex.clean = clean, # save intermediate files
+      bookdown.post.latex = function(x) {
+        x <- fix_envs(x)
+      } # remove empty lines between environments
+    )
   )
 
   # choose how we print the title
@@ -260,16 +284,24 @@ render_beamer <- function(input = "beamer",
     remove_top <- c()
     remove_bottom <- c()
     if (length(fence)) {
-      if (direction %in% c("top", "both")) is_top_blank <- grepl("^\\s*$", x[fence - 1])
-      if (direction %in% c("top", "both")) remove_top <- fence[is_top_blank] - 1
-      if (direction %in% c("bottom", "both")) is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
-      if (direction %in% c("bottom", "both")) remove_bottom <- fence[is_bottom_blank] + 1
+      if (direction %in% c("top", "both")) {
+        is_top_blank <- grepl("^\\s*$", x[fence - 1])
+      }
+      if (direction %in% c("top", "both")) {
+        remove_top <- fence[is_top_blank] - 1
+      }
+      if (direction %in% c("bottom", "both")) {
+        is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
+      }
+      if (direction %in% c("bottom", "both")) {
+        remove_bottom <- fence[is_bottom_blank] + 1
+      }
     }
     x[-c(remove_top, remove_bottom)]
   }
   fix_envs <- function(x) {
-    beg_reg <- '^\\s*\\\\begin\\{.*\\}'
-    end_reg <- '^\\s*\\\\end\\{.*\\}'
+    beg_reg <- "^\\s*\\\\begin\\{.*\\}"
+    end_reg <- "^\\s*\\\\end\\{.*\\}"
 
     top_fence <- grep(beg_reg, x)
     x <- check_if_newlines_fence(top_fence, x, direction = "both")
@@ -279,8 +311,12 @@ render_beamer <- function(input = "beamer",
   }
 
   withr::local_options(
-    list(tinytex.clean = clean, # save intermediate files
-         bookdown.post.latex = function(x) {x <- fix_envs(x)}) # remove empty lines between environments
+    list(
+      tinytex.clean = clean, # save intermediate files
+      bookdown.post.latex = function(x) {
+        x <- fix_envs(x)
+      } # remove empty lines between environments
+    )
   )
 
   # source pre_script
