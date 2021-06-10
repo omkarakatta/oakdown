@@ -5,9 +5,6 @@ other: OTHER
 id: ID
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 author: AUTHOR
-bibliography: main.bib
-header-includes:
-  - \usepackage{oaktex}
 ---
 
 ```{r}
@@ -34,8 +31,6 @@ This is an important theorem.
 :::{.pr data-latex=""}
 Because I said so.
 :::
-
-[@R-knitr]
 
 ## Lists
 
