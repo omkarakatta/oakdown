@@ -118,19 +118,19 @@ render_note <- function(input = "note",
   }
 }
 
-### render_quicknote ---------------------------
+### render_jot ---------------------------
 
 # TODO: post_script
 # TODO: Extract bookdown generation into a separate function
 # TODO: Create "ext" argument as in render_beamer?
 
-#' Render Rmd to a PDF quicknote
+#' Render Rmd to a PDF jot
 #'
 #' This function sets options, generates a bookdown configuration file,
 #' and wraps \code{bookdown::pdf_book}.
 #' Note that in the bookdown configuration process, this function, by default,
 #' specifies the R script to run before the "chapter", which in our case is
-#' is the quicknote.
+#' is the jot.
 #'
 #' @param input Input file, to be passed to
 #'  \code{bookdown::render_book()}
@@ -138,7 +138,7 @@ render_note <- function(input = "note",
 #' @param output Name of the output PDF; defaults to "rendered_\code{input}"
 #' @param output_dir Name of output directory
 #' @param output_format Name of output format; defaults to
-#'  \code{oakdown::pdf_quicknote}
+#'  \code{oakdown::pdf_jot}
 #' @param pre_script Name of R script to run before rendering
 #' @param config_file Book configuration file; if file does not exist, then
 #'  create it
@@ -150,17 +150,17 @@ render_note <- function(input = "note",
 #' @param title_fcn Function to interpret header information in Rmd
 #' @param ... Arguments to be passed to \code{bookdown::render_book}
 #'
-#' @return A PDF quicknote with the name and directory as specified by
+#' @return A PDF jot with the name and directory as specified by
 #'  \code{config_file}
 #'
 #' @export
-render_quicknote <- function(input = "quicknote",
+render_jot <- function(input = "jot",
                              ext = "rmd",
                              output = paste0("rendered_", input),
                              output_dir = "_render",
-                             output_format = oakdown::pdf_quicknote(),
+                             output_format = oakdown::pdf_jot(),
                              pre_script = resources("all", "settings.r"),
-                             config_file = "quicknote-bookdown.yml",
+                             config_file = "jot-bookdown.yml",
                              save_config_file = FALSE,
                              clean = TRUE,
                              clean_bookdown = "",
@@ -195,7 +195,7 @@ render_quicknote <- function(input = "quicknote",
   )
 
   # choose how we print the title
-  # oakdown_print_title <- title_fcn # don't need to print title in quicknote
+  # oakdown_print_title <- title_fcn # don't need to print title in jot
 
   # generate bookdown configuration
   config_file_exists <- fs::file_exists(config_file)
@@ -207,7 +207,7 @@ render_quicknote <- function(input = "quicknote",
       pre_script = pre_script,
       clean_bookdown = clean_bookdown
     )
-    bookdown_template <- readLines(resources("quicknote", "_bookdown.yml"))
+    bookdown_template <- readLines(resources("jot", "_bookdown.yml"))
     bookdown_config <- whisker::whisker.render(bookdown_template, data = config)
     config <- strsplit(bookdown_config, "\n")[[1]]
     writeLines(config, con = config_file)

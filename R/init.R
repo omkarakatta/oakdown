@@ -80,8 +80,8 @@ init_note <- function(name,
        overwrite_gitignore = overwrite_gitignore)
 }
 
-### init_quicknote -------------------------
-#' Initialize quicknote template
+### init_jot -------------------------
+#' Initialize jot template
 #'
 #' In the current directory, create an Rmd file called \code{name} based
 #' on the skeleton file in {oakdown}'s note template.
@@ -100,11 +100,11 @@ init_note <- function(name,
 #' @export
 #'
 #' @seealso \code{\link{init}}
-init_quicknote <- function(name,
+init_jot <- function(name,
                            ext = ".rmd",
                            use_gitignore = TRUE,
                            overwrite_gitignore = FALSE) {
-  init(template = "quicknote",
+  init(template = "jot",
        name = name,
        ext = ext,
        use_gitignore = use_gitignore,
