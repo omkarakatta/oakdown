@@ -6,6 +6,14 @@
   - book: multi-document, operates like a report but looks and feels like a book
   - beamer: single-document presentation format [WIP]
 - Incorporate {cli}
+- Describe the coding philosophy and structure in README
+- Abstract components to reduce redundancy in `R/render_fcns.R`
+
+## Jot
+
+- Use `summary` from YAML to print summary of jot
+- Reduce top margin
+- Have font size of header be same as font size of document
 
 # Issues
 

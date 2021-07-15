@@ -61,16 +61,24 @@ render_note <- function(input = "note",
     remove_top <- c()
     remove_bottom <- c()
     if (length(fence)) {
-      if (direction %in% c("top", "both")) is_top_blank <- grepl("^\\s*$", x[fence - 1])
-      if (direction %in% c("top", "both")) remove_top <- fence[is_top_blank] - 1
-      if (direction %in% c("bottom", "both")) is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
-      if (direction %in% c("bottom", "both")) remove_bottom <- fence[is_bottom_blank] + 1
+      if (direction %in% c("top", "both")) {
+        is_top_blank <- grepl("^\\s*$", x[fence - 1])
+      }
+      if (direction %in% c("top", "both")) {
+        remove_top <- fence[is_top_blank] - 1
+      }
+      if (direction %in% c("bottom", "both")) {
+        is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
+      }
+      if (direction %in% c("bottom", "both")) {
+        remove_bottom <- fence[is_bottom_blank] + 1
+      }
     }
     x[-c(remove_top, remove_bottom)]
   }
   fix_envs <- function(x) {
-    beg_reg <- '^\\s*\\\\begin\\{.*\\}'
-    end_reg <- '^\\s*\\\\end\\{.*\\}'
+    beg_reg <- "^\\s*\\\\begin\\{.*\\}"
+    end_reg <- "^\\s*\\\\end\\{.*\\}"
 
     top_fence <- grep(beg_reg, x)
     x <- check_if_newlines_fence(top_fence, x, direction = "both")
@@ -80,8 +88,12 @@ render_note <- function(input = "note",
   }
 
   withr::local_options(
-    list(tinytex.clean = clean, # save intermediate files
-         bookdown.post.latex = function(x) {x <- fix_envs(x)}) # remove empty lines between environments
+    list(
+      tinytex.clean = clean, # save intermediate files
+      bookdown.post.latex = function(x) {
+        x <- fix_envs(x)
+      } # remove empty lines between environments
+    )
   )
 
   # choose how we print the title
@@ -108,6 +120,129 @@ render_note <- function(input = "note",
   bookdown::render_book(
     input = paste0(input, ".", ext),
     config_file = config_file,
+    ...
+  )
+
+  # delete generated bookdown config file
+  if (!config_file_exists & !save_config_file) {
+    fs::file_delete(config_file)
+    message("Deleted bookdown configuration")
+  }
+}
+
+### render_jot ---------------------------
+
+# TODO: post_script
+# TODO: Extract bookdown generation into a separate function
+# TODO: Create "ext" argument as in render_beamer?
+
+#' Render Rmd to a PDF jot
+#'
+#' This function sets options, generates a bookdown configuration file,
+#' and wraps \code{bookdown::pdf_book}.
+#' Note that in the bookdown configuration process, this function, by default,
+#' specifies the R script to run before the "chapter", which in our case is
+#' is the jot.
+#'
+#' @param input Input file, to be passed to
+#'  \code{bookdown::render_book()}
+#' @param ext Extension of input; defaults to "rmd"
+#' @param output Name of the output PDF; defaults to "rendered_\code{input}"
+#' @param output_dir Name of output directory
+#' @param output_format Name of output format; defaults to
+#'  \code{oakdown::pdf_jot}
+#' @param pre_script Name of R script to run before rendering
+#' @param config_file Book configuration file; if file does not exist, then
+#'  create it
+#' @param save_config_file Save generated book configuration file
+#' @param clean Argument to be passed to \code{tinytex.clean} option;
+#'  if TRUE (default), delete intermediaries, e.g., *.aux, *.toc, etc.
+#' @param clean_bookdown Argument to be passed to bookdown configuration;
+#'  vector of files to be removed
+#' @param title_fcn Function to interpret header information in Rmd
+#' @param ... Arguments to be passed to \code{bookdown::render_book}
+#'
+#' @return A PDF jot with the name and directory as specified by
+#'  \code{config_file}
+#'
+#' @export
+render_jot <- function(input = "jot",
+                       ext = "rmd",
+                       output = paste0("rendered_", input),
+                       output_dir = "_render",
+                       output_format = oakdown::pdf_jot(),
+                       pre_script = resources("all", "settings.r"),
+                       config_file = "jot-bookdown.yml",
+                       save_config_file = FALSE,
+                       clean = TRUE,
+                       clean_bookdown = "",
+                       title_fcn = cat_header_to_yaml,
+                       ...) {
+
+  check_if_newlines_fence <- function(fence, x, direction) {
+    remove_top <- c()
+    remove_bottom <- c()
+    if (length(fence)) {
+      if (direction %in% c("top", "both")) {
+        is_top_blank <- grepl("^\\s*$", x[fence - 1])
+      }
+      if (direction %in% c("top", "both")) {
+        remove_top <- fence[is_top_blank] - 1
+      }
+      if (direction %in% c("bottom", "both")) {
+        is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
+      }
+      if (direction %in% c("bottom", "both")) {
+        remove_bottom <- fence[is_bottom_blank] + 1
+      }
+    }
+    x[-c(remove_top, remove_bottom)]
+  }
+  fix_envs <- function(x) {
+    beg_reg <- "^\\s*\\\\begin\\{.*\\}"
+    end_reg <- "^\\s*\\\\end\\{.*\\}"
+
+    top_fence <- grep(beg_reg, x)
+    x <- check_if_newlines_fence(top_fence, x, direction = "both")
+    bottom_fence <- grep(end_reg, x)
+    x <- check_if_newlines_fence(bottom_fence, x, direction = "both")
+    x
+  }
+
+  withr::local_options(
+    list(
+      tinytex.clean = clean, # save intermediate files
+      bookdown.post.latex = function(x) {
+        x <- fix_envs(x)
+      } # remove empty lines between environments
+    )
+  )
+
+  # choose how we print the title
+  # oakdown_print_title <- title_fcn # don't need to print title in jot
+
+  # generate bookdown configuration
+  config_file_exists <- fs::file_exists(config_file)
+  if (!config_file_exists) {
+    config <- list(
+      input = paste0(input, ".", ext),
+      output = output,
+      output_dir = output_dir,
+      pre_script = pre_script,
+      clean_bookdown = clean_bookdown
+    )
+    bookdown_template <- readLines(resources("jot", "_bookdown.yml"))
+    bookdown_config <- whisker::whisker.render(bookdown_template, data = config)
+    config <- strsplit(bookdown_config, "\n")[[1]]
+    writeLines(config, con = config_file)
+    message("Generated bookdown configuration")
+  }
+
+  # render PDF
+  bookdown::render_book(
+    input = paste0(input, ".", ext),
+    config_file = config_file,
+    output_format = output_format,
     ...
   )
 
@@ -149,16 +284,24 @@ render_beamer <- function(input = "beamer",
     remove_top <- c()
     remove_bottom <- c()
     if (length(fence)) {
-      if (direction %in% c("top", "both")) is_top_blank <- grepl("^\\s*$", x[fence - 1])
-      if (direction %in% c("top", "both")) remove_top <- fence[is_top_blank] - 1
-      if (direction %in% c("bottom", "both")) is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
-      if (direction %in% c("bottom", "both")) remove_bottom <- fence[is_bottom_blank] + 1
+      if (direction %in% c("top", "both")) {
+        is_top_blank <- grepl("^\\s*$", x[fence - 1])
+      }
+      if (direction %in% c("top", "both")) {
+        remove_top <- fence[is_top_blank] - 1
+      }
+      if (direction %in% c("bottom", "both")) {
+        is_bottom_blank <- grepl("^\\s*$", x[fence + 1])
+      }
+      if (direction %in% c("bottom", "both")) {
+        remove_bottom <- fence[is_bottom_blank] + 1
+      }
     }
     x[-c(remove_top, remove_bottom)]
   }
   fix_envs <- function(x) {
-    beg_reg <- '^\\s*\\\\begin\\{.*\\}'
-    end_reg <- '^\\s*\\\\end\\{.*\\}'
+    beg_reg <- "^\\s*\\\\begin\\{.*\\}"
+    end_reg <- "^\\s*\\\\end\\{.*\\}"
 
     top_fence <- grep(beg_reg, x)
     x <- check_if_newlines_fence(top_fence, x, direction = "both")
@@ -168,8 +311,12 @@ render_beamer <- function(input = "beamer",
   }
 
   withr::local_options(
-    list(tinytex.clean = clean, # save intermediate files
-         bookdown.post.latex = function(x) {x <- fix_envs(x)}) # remove empty lines between environments
+    list(
+      tinytex.clean = clean, # save intermediate files
+      bookdown.post.latex = function(x) {
+        x <- fix_envs(x)
+      } # remove empty lines between environments
+    )
   )
 
   # source pre_script

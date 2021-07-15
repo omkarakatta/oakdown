@@ -1,0 +1,4 @@
+name: jot
+description: >
+   Single-document, go-to format for quicknotes
+create_dir: FALSE

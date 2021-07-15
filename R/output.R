@@ -54,6 +54,22 @@ pdf_note <- function(...) {
   )
 }
 
+### pdf_jot -------------------------
+#' Convert Rmd into a jot
+#'
+#' @param ... Arguments to be passed to \code{\link{pdf_output}}
+#'
+#' @export
+pdf_jot <- function(...) {
+  pdf_output(
+    format = "jot",
+    pandoc_args = c("--listings",
+                    "--shift-heading-level-by=-1"),
+    FUN = bookdown::pdf_book,
+    ...
+  )
+}
+
 ### beamer -------------------------
 #' Convert Rmd into a beamer presentation
 #'
