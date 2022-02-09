@@ -241,6 +241,18 @@ $endif$
 \usepackage{makecell}
 \usepackage{xcolor}
 
+% TikZ packages
+
+$if(tikz)$
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{tikz}
+$endif$
+$if(tikzlibrary)$
+\usetikzlibrary{$for(tikzlibrary)$ $tikzlibrary$ $set$, $endfor$}
+$endif$
+
+
 %%% FORMATTING
 
 $if(highlighting-macros)$
